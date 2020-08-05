@@ -11,7 +11,7 @@ exports[`ContactsListOrSpinner should display the contact List 1`] = `
       <div
         className="divider"
       >
-        EMPTY
+        empty-list
       </div>
       <ol
         className="sublist-contact"

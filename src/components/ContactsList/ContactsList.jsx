@@ -4,13 +4,14 @@ import flag from 'cozy-flags'
 import Button from 'cozy-ui/transpiled/react/Button'
 import { translate } from 'cozy-ui/transpiled/react/I18n'
 
-import { sortLastNameFirst, buildLastNameFirst, toto } from './'
+// import { sortLastNameFirst, buildLastNameFirst } from './'
 import ContactsEmptyList from './ContactsEmptyList'
 import ContactRow from './ContactRow'
 import ContactHeaderRow from './ContactHeaderRow'
 import withModal from '../HOCs/withModal'
 import ContactCardModal from '../Modals/ContactCardModal'
 import withSelection from '../Selection/selectionContainer'
+import { getSortedContact, trololo } from 'cozy-client'
 
 class ContactsList extends Component {
   render() {
@@ -26,18 +27,9 @@ class ContactsList extends Component {
     if (contacts.length === 0) {
       return <ContactsEmptyList />
     } else {
-      toto(contacts)
       const allContactsSelected = contacts.length === selection.length
-      const sortedContacts = [...contacts].sort(sortLastNameFirst)
-      const categorizedContacts = sortedContacts.reduce((acc, contact) => {
-        const name = buildLastNameFirst(contact)
-        const header = name[0] || t('empty-list')
-        acc[header] = acc[header] || []
-        acc[header].push(contact)
-        return acc
-      }, {})
-      console.info('sortedContacts', sortedContacts)
-      console.info('categorizedContacts', categorizedContacts)
+      const categorizedContacts = getSortedContact(contacts)
+      trololo(contacts)
       return (
         <div className="list-wrapper">
           {flag('select-all-contacts') && (

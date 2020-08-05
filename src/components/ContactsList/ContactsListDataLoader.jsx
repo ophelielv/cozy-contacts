@@ -14,6 +14,7 @@ class ContactsListDataLoader extends Component {
     const { fetchStatus, hasMore, contacts } = this.props
 
     if (fetchStatus === 'loaded' && hasMore === false) {
+      console.info('contacts', this.props)
       return <ContactsList contacts={contacts} />
     } else {
       return <SpinnerContact size="xxlarge" loadingType="fetching_contacts" />

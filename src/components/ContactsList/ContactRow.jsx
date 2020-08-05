@@ -24,6 +24,11 @@ class ContactRow extends Component {
       number: undefined
     }
 
+    // if (contact.name.givenName === 'tt') {
+    //   console.log('tt')
+    //   console.log('contact', contact)
+    // }
+    // console.log('contact', contact)
     const { address: email } = getPrimaryOrFirst(contact.email) || {
       address: undefined
     }

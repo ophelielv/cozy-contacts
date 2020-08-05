@@ -15,6 +15,7 @@ import {
   getConnectedAccounts
 } from '../../helpers/contacts'
 import ContactAccounts from './ContactAccounts'
+import { updateDoctypeToV3 } from './ContactForm/formValuesToContact'
 
 const ContactCard = ({ t, contact, renderHeader, renderBody, allGroups }) => {
   const fields = getFieldListFrom(contact)
@@ -27,6 +28,11 @@ const ContactCard = ({ t, contact, renderHeader, renderBody, allGroups }) => {
   const normalizedFields = makeValuesArray(orderedFields)
 
   const activeContactAccounts = getConnectedAccounts(contact)
+
+  console.info('contact in card')
+
+  updateDoctypeToV3(contact)
+
   return (
     <>
       {renderHeader(

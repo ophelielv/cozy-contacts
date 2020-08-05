@@ -24,20 +24,6 @@ import ContactsListDataLoader from './ContactsList/ContactsListDataLoader'
 import Header from './Header'
 import Toolbar from './Toolbar'
 
-const query = client =>
-  client
-    .all(DOCTYPE_CONTACTS)
-    .include(['accounts'])
-    .where({
-      trashed: {
-        $exists: false
-      },
-      _id: {
-        $gt: null
-      }
-    })
-    .indexFields(['_id'])
-
 class ContactsApp extends React.Component {
   // HACK to avoid CozyBar error :
   // you tried to use the CozyBar API (BarCenter) but the CozyBar is not initialised yet via cozy.bar.init
@@ -78,7 +64,22 @@ class ContactsApp extends React.Component {
         <Main>
           {flag('switcher') && <FlagSwitcher />}
           <ContactsSelectionBar trashAction={deleteContact} />
-          <Query query={query}>
+          <Query
+            query={client =>
+              client
+                .all(DOCTYPE_CONTACTS)
+                .include(['accounts'])
+                .where({
+                  trashed: {
+                    $exists: false
+                  },
+                  _id: {
+                    $gt: null
+                  }
+                })
+                .indexFields(['_id'])
+            }
+          >
             {({ data: contacts, fetchStatus, hasMore, fetchMore }) => {
               return (
                 <>
