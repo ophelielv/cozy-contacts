@@ -53,6 +53,10 @@
       "description": "Required by the cozy-bar to display Claudy and know which applications are coming soon",
       "type": "io.cozy.settings",
       "verbs": ["GET"]
+    },
+    "triggers": {
+      "type": "io.cozy.triggers",
+      "verbs": ["GET"]
     }
   },
   "intents": [
@@ -69,9 +73,10 @@
   ],
   "services": {
     "checkAndUpdate": {
-        "type": "node",
-        "file": "services/checkAndUpdate/contacts.js",
-        "trigger": "@event io.cozy.contacts:CREATED,UPDATED"
+      "type": "node",
+      "file": "services/checkAndUpdate/contacts.js",
+      "trigger": "@event io.cozy.contacts:CREATED,UPDATED",
+      "debounce": "5s"
     }
   }
 }
