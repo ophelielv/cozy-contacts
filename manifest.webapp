@@ -66,5 +66,12 @@
       "type": ["io.cozy.contacts"],
       "href": "/services"
     }
-  ]
+  ],
+  "services": {
+    "checkAndUpdate": {
+        "type": "node",
+        "file": "services/checkAndUpdate/contacts.js",
+        "trigger": "@event io.cozy.contacts:CREATED,UPDATED"
+    }
+  }
 }
